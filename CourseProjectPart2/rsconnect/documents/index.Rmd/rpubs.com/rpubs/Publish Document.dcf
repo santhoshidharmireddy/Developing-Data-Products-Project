@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/157669/6513db20915c4a6e90be2bee94e27682
+bundleId: https://api.rpubs.com/api/v1/document/157669/6513db20915c4a6e90be2bee94e27682
+url: http://rpubs.com/santhoshidharmireddi/157669
+when: 1456870105.77293

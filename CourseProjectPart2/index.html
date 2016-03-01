@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shiny Application on mtcars dataset</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Shiny Application on mtcars dataset">
+  <meta name="author" content="Santhoshi Dharmireddi">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/slides" 
+    src="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Shiny Application on mtcars dataset</h1>
+    <h2>The relationship between variables and miles per gallon (MPG)</h2>
+    <p>Santhoshi Dharmireddi<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction:</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This presentation is part of the Course Project for the Developing Data Products class. The peer assessed assignment has two parts. First, we need to create a Shiny application and deploy it on Rsrudio&#39;s servers. Second, we should use Slidify or Rstudio Presenter to prepare a reproducible pitch presentation about the application. This presentation addresses the second part of the course project.</p>
+
+<p>The app developed for the first part of the assignment is available at:</p>
+
+<p><a href="https://santhoshidharmireddi.shinyapps.io/DDPCourseProject">https://santhoshidharmireddi.shinyapps.io/DDPCourseProject</a></p>
+
+<p>Source code for ui.R and server.R files are available on the Github:</p>
+
+<p><a href="https://github.com/santhoshidharmireddy/Developing-Data-Products-Project/tree/master/CourseProjectPart1">https://github.com/santhoshidharmireddy/Developing-Data-Products-Project/tree/master/CourseProjectPart1</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Design</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The application uses the default &quot;mtcars&quot; dataset installed with R. It contains plot settings for interactive data analysis without much code modifications.</p>
+
+<p>This app helps you to find the relationship between different variables and miles per gallon (MPG). This app also provides summary statistics for each relationship.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>mtcars Dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The data used in the app comes from the Motor Trend Car Road Tests (mtcars) dataset. The data was extracted from the 1974 Motor Trend US magazine, and comprise fuel consumption and 10 variables of automobile design and performance for 32 automobiles (1973-74 models). We can look at some characteristics of the data:</p>
+
+<pre><code class="r">head(mtcars)
+</code></pre>
+
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">formula&lt;- lm(mpg ~ cyl, data = mtcars)
+p&lt;- plot(as.integer(mtcars$cyl), mtcars$mpg, xlab = &quot;cyl&quot;, ylab = &quot;mpg&quot;)
+abline(formula, col=2)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="600px" height="400px" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction:'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Design'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='mtcars Dataset'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Plot'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
